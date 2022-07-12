@@ -34,6 +34,10 @@ public class InGameApp : BaseApplication
         {
             PopupManager.Instance.CreatePopup(EPrefabsType.Popup, "NormalPopup");
         }
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            PopupManager.Instance.CreatePopup(EPrefabsType.Popup, "FullscreenPopup");
+        }
     }
 
     public override void Dispose()

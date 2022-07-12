@@ -32,19 +32,12 @@ public class PopupManager : MonoBehaviour
     }
     #endregion
 
+    #region lifeCycle
     private void Awake()
     {
         foreach (var popupbase in _popupStack)
         {
             popupbase.Init();
-        }
-    }
-
-    private void Start()
-    {
-        foreach (var popupbase in _popupStack)
-        {
-            popupbase.Set();
         }
     }
 
@@ -55,17 +48,34 @@ public class PopupManager : MonoBehaviour
             popupbase.AdvanceTime(Time.deltaTime);
         }
     }
+    #endregion
+
+    #region private
+    private void InitInstance(GameObject go)
+    {
+        PopupBase _popupInstance = go.GetComponent<PopupBase>();
+        _popupInstance.Init();
+        _popupInstance.Set();
+        _popupStack.Push(_popupInstance);
+    }
+
+    private GameObject CreatePopup(EPrefabsType type, string name, Transform layer)
+    {
+        go = PoolManager.Instance.GrabPrefabs(type, name, _canvas.transform);
+        go.transform.position = _canvas.transform.position;
+        return go;
+    }
 
     private Canvas _canvas = null;
     private Stack<PopupBase> _popupStack = new Stack<PopupBase>();
+    private GameObject go = null;
+    #endregion
 
-    // Popup이 올라갈 canvas 설정
     public void SetCanvas(Canvas canvas)
     {
         _canvas = canvas;
     }
 
-    // 설정한 canvas위에 popup생성
     public GameObject CreatePopup(EPrefabsType type, string name)
     {
         if (_canvas == null)
@@ -73,16 +83,12 @@ public class PopupManager : MonoBehaviour
             Debug.LogError("[Self] expected canvas");
             return null;
         }
-        GameObject go = PoolManager.Instance.GrabPrefabs(type, name, _canvas.transform);
-        go.transform.position = _canvas.transform.position;
-        PopupBase _popupInstance = go.GetComponent<PopupBase>();
-        _popupInstance.Init();
-        _popupInstance.Set();
-        _popupStack.Push(_popupInstance);
+
+        go = CreatePopup(type, name,  _canvas.transform);
+        InitInstance(go);
         return go;
     }
 
-    // 맨 앞 popup닫기
     public void DeleteHead()
     {
         if (_popupStack.Count == 0)
@@ -94,7 +100,6 @@ public class PopupManager : MonoBehaviour
         _head.Dispose();
     }
 
-    // 모든 popup닫기
     public void DeleteAll()
     {
         while (_popupStack.Count > 0)

@@ -15,11 +15,12 @@ public class StickPopup : PopupBase
 
     public override void Set()
     {
+        base.Set();
     }
 
     public override void AdvanceTime(float dt_sec)
     {
-
+        base.AdvanceTime(dt_sec);
     }
 
     public override void Dispose()

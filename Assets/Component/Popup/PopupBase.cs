@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class PopupBase : IGameBasicModule
+public class PopupBase : MonoBehaviour
 {
     #region static variables
     #endregion
@@ -22,11 +22,11 @@ public abstract class PopupBase : IGameBasicModule
     #region [get, set]
     #endregion
 
-    public void Init()
+    public virtual void Init()
     {
     }
 
-    public void Set()
+    public virtual void Set()
     {
         if (_closeBtn == null)
         {
@@ -43,12 +43,12 @@ public abstract class PopupBase : IGameBasicModule
         _closeBtn.onClick.AddListener(Dispose);
     }
 
-    public void AdvanceTime(float dt_sec)
+    public virtual void AdvanceTime(float dt_sec)
     {
         
     }
 
-    public void Dispose()
+    public virtual void Dispose()
     {
         _closeBtn.onClick.RemoveAllListeners();
     }

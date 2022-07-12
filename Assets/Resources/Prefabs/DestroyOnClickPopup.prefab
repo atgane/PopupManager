@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 8766691795273291979}
   - component: {fileID: 632687384761071719}
   m_Layer: 5
-  m_Name: Popup1
+  m_Name: DestroyOnClickPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

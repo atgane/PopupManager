@@ -26,11 +26,11 @@ public class InGameApp : BaseApplication
     {
         if (Input.GetKeyUp(KeyCode.R))
         {
-            PopupManager.Instance.CreatePopup(EPrefabsType.Popup, "popup4");
+            PopupManager.Instance.CreatePopup(EPrefabsType.Popup, "DestroyOnClickPopup");
         }
         if (Input.GetKeyUp(KeyCode.Q))
         {
-            PopupManager.Instance.CreatePopup(EPrefabsType.Popup, "popup1");
+            PopupManager.Instance.CreatePopup(EPrefabsType.Popup, "NormalPopup");
         }
     }
 

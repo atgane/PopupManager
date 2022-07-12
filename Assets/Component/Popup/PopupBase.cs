@@ -17,6 +17,7 @@ public abstract class PopupBase : IGameBasicModule
     private Button _closeBtn; // 닫는 버튼
     [SerializeField]
     private RectTransform _rectTransform;
+    private EPopupType _popupType = EPopupType.Normal;
     #endregion
 
     #region [get, set]
@@ -52,4 +53,13 @@ public abstract class PopupBase : IGameBasicModule
     {
         _closeBtn.onClick.RemoveAllListeners();
     }
+}
+
+public enum EPopupType
+{
+    Normal, 
+    Alert, 
+    DestroyOnClick, 
+    CursorFollower, 
+    FullScreen, 
 }

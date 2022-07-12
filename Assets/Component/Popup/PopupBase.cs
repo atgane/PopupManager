@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class PopupBase : BaseApplication
+public abstract class PopupBase : IGameBasicModule
 {
     #region static variables
     #endregion
@@ -22,7 +22,11 @@ public abstract class PopupBase : BaseApplication
     #region [get, set]
     #endregion
 
-    public override void Init()
+    public void Init()
+    {
+    }
+
+    public void Set()
     {
         if (_closeBtn == null)
         {
@@ -39,7 +43,12 @@ public abstract class PopupBase : BaseApplication
         _closeBtn.onClick.AddListener(Dispose);
     }
 
-    public override void Dispose()
+    public void AdvanceTime(float dt_sec)
+    {
+        
+    }
+
+    public void Dispose()
     {
         _closeBtn.onClick.RemoveAllListeners();
     }

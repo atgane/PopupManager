@@ -27,7 +27,6 @@ public class PopupManager : MonoBehaviour
                     _instance = go.AddComponent<PopupManager>();
                 }
             }
-
             return _instance;
         }
     }

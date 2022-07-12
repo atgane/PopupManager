@@ -2,7 +2,7 @@
 using TMPro;
 using System.Collections;
 
-public class StickPopup : PopupBase
+public class DestroyOnClickPopup : PopupBase
 {
     [SerializeField]
     public TextMeshProUGUI text;

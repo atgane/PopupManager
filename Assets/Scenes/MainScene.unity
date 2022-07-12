@@ -1082,4 +1082,4 @@ MonoBehaviour:
   _inGameApp: {fileID: 1962552985}
   _popupList: []
   _popupInstanciate: {fileID: 8185053352302775742, guid: 76daf87af5d314167990b559216326c1, type: 3}
-  _canvas: {fileID: 5867718}
+  _sceneEventBtn: {fileID: 813154616}

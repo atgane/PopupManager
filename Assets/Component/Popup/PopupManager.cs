@@ -47,6 +47,7 @@ public class PopupManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(_popupStack.Count);
         foreach (var popupbase in _popupStack)
         {
             popupbase.AdvanceTime(Time.deltaTime);
@@ -91,6 +92,8 @@ public class PopupManager : MonoBehaviour
     private void SetCanvas()
     {
         _canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
+        if (_canvas != null) return;
+        _canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
     }
 
     public GameObject CreatePopup(EPrefabsType type, string name)

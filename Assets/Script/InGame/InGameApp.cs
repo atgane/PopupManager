@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class InGameApp : BaseApplication
 {
@@ -11,10 +13,11 @@ public class InGameApp : BaseApplication
     [SerializeField]
     private GameObject _popupInstanciate;
     [SerializeField]
-    private Canvas _canvas;
+    private Button _sceneEventBtn;
 
     public override void Init()
     {
+        _sceneEventBtn.onClick.AddListener(OnClickSceneChangeEvent);
     }
 
     public override void Set()
@@ -36,4 +39,11 @@ public class InGameApp : BaseApplication
     public override void Dispose()
     {
     }
+
+    public void OnClickSceneChangeEvent()
+    {
+        NotificationCenter.Instance.PostNotification(ENotiMessage.ChangeSceneState);
+        SceneManager.LoadScene("SubScene");
+    }
 }
+

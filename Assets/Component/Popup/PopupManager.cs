@@ -35,6 +35,10 @@ public class PopupManager : MonoBehaviour
     #region lifeCycle
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+        SetCanvas();
+        NotificationCenter.Instance.AddObserver(OnNotification, ENotiMessage.ChangeSceneState);
+
         foreach (var popupbase in _popupStack)
         {
             popupbase.Init();
@@ -69,11 +73,24 @@ public class PopupManager : MonoBehaviour
     private Canvas _canvas = null;
     private Stack<PopupBase> _popupStack = new Stack<PopupBase>();
     private GameObject go = null;
+
+    private void OnNotification(Notification noti)
+    {
+        switch (noti.msg)
+        {
+            case ENotiMessage.ChangeSceneState:
+                _canvas = null;
+                DeleteAll();
+                SetCanvas();
+                if (_canvas == null) Debug.LogError("[Self] expected PopupCanvas");
+                break;
+        }
+    }
     #endregion
 
-    public void SetCanvas(Canvas canvas)
+    private void SetCanvas()
     {
-        _canvas = canvas;
+        _canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
     }
 
     public GameObject CreatePopup(EPrefabsType type, string name)

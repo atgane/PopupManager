@@ -15,7 +15,6 @@ public class InGameApp : BaseApplication
 
     public override void Init()
     {
-        PopupManager.Instance.SetCanvas(_canvas);
     }
 
     public override void Set()
